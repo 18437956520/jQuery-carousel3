@@ -13,14 +13,20 @@
 
 .images{
     display: flex;
+    transition: all 1s;
 }
 
 .images>img{
     width: 100%;
-    transition: all 1s;
 }
 
-
+#button{
+    text-align: center;
+}
+button{
+    padding: 3px 10px;
+    margin: 0 5px;
+}
 
 
 
