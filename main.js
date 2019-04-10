@@ -17,7 +17,27 @@ function bindEvents(){
     $('#button').on('click', 'button', function(x){
         let $button = $(x.currentTarget)
         let index = $button.index()
-        
+
+        if(current === $buttons.length-1 && index === 0){
+            //最后一张到第一张
+            $slides.css({transform:`translateX(${-($buttons.length + 1)*300}px)`})
+                .one('transitionend', function(){
+                    $slides.hide().offset()
+                    $slides.css({transform:`translateX(${-(index+1)*300}px)`}).show()
+                })
+
+        }else if(current === 0 && index === $buttons.length-1){
+            $slides.css({transform:`translateX(0px)`})
+                .one('transitionend', function(){
+                    $slides.hide().offset()
+                    $slides,css({transform:`translateX(${-(index+1)*300}px)`}).show()
+                })
+
+        }else{
+            $slides.css({transform:`translateX(${-(index+1)*300}px)`})
+        }
+        current = index
+
     })
 
 
