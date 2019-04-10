@@ -7,7 +7,16 @@ makeFakeSlides()
 $slides.css({transform:'translateX(-300px)'})
 bindEvents()
 
-
+let timer = setInterval(() => {
+    goToSlide(current+1)
+}, 1000)
+$('.container').on('mouseenter', function(){
+    window.clearInterval(timer)
+}).on('mouseleave', function(){
+    timer = setInterval(() => {
+        goToSlide(current+1)
+    }, 1000)
+})
 
 
 
@@ -22,6 +31,11 @@ function bindEvents(){
 }
 
 function goToSlide(index){
+    if(index>$buttons.length-1){
+        index=0
+    }else if(index<0){
+        index = $buttons.length-1
+    }
     if(current === $buttons.length-1 && index === 0){
         //最后一张到第一张
         $slides.css({transform:`translateX(${-($buttons.length + 1)*300}px)`})
